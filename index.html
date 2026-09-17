@@ -85,12 +85,7 @@
       background: #171717;
     }
 
-    /*
-      The uploaded PNG is a screenshot containing browser chrome + an old
-      header + the campaign image. The campaign itself starts around 28% down.
-      Zooming from the bottom removes those baked-in UI layers so they don't
-      appear a second time behind the real header.
-    */
+    /* The uploaded image is a screenshot, so crop its baked-in top UI. */
     .hero-image {
       position: absolute;
       inset: 0;
@@ -105,23 +100,40 @@
 
     @media (max-width: 700px) {
       .site-header {
-        height: 82px;
-        padding: 0 24px;
+        height: 64px;
+        padding: 0 18px;
       }
 
       .logo {
-        font-size: 32px;
-        letter-spacing: 5px;
+        font-size: 29px;
+        letter-spacing: 4px;
       }
 
-      .header-actions { gap: 17px; }
-      .icon-button { width: 27px; height: 27px; }
-      .icon-button svg { width: 27px; height: 27px; }
-      .notification-dot { width: 7px; height: 7px; }
+      .header-actions {
+        gap: 14px;
+      }
+
+      .icon-button {
+        width: 24px;
+        height: 24px;
+      }
+
+      .icon-button svg {
+        width: 24px;
+        height: 24px;
+        stroke-width: 1.7;
+      }
+
+      .notification-dot {
+        width: 6px;
+        height: 6px;
+        top: -1px;
+        right: 0;
+      }
 
       .hero {
-        height: calc(100svh - 82px);
-        min-height: 540px;
+        height: calc(100svh - 64px);
+        min-height: 0;
       }
 
       .hero-image {
@@ -130,8 +142,18 @@
     }
 
     @media (max-width: 430px) {
-      .site-header { padding: 0 18px; }
-      .header-actions { gap: 12px; }
+      .site-header {
+        padding: 0 16px;
+      }
+
+      .logo {
+        font-size: 27px;
+        letter-spacing: 3.5px;
+      }
+
+      .header-actions {
+        gap: 11px;
+      }
     }
   </style>
 </head>
