@@ -2,38 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
   <meta name="description" content="HALE — modern fashion." />
   <title>HALE</title>
   <style>
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; width: 100%; min-height: 100%; }
+    html, body { margin: 0; min-height: 100%; width: 100%; }
     body {
-      font-family: Arial, Helvetica, sans-serif;
       background: #fff;
       color: #080808;
+      font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
     }
 
+    button, a { -webkit-tap-highlight-color: transparent; }
+
     .site-header {
-      height: 108px;
+      position: relative;
+      z-index: 10;
       width: 100%;
-      background: #fff;
+      height: 108px;
+      padding: 0 54px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 54px;
-      position: relative;
-      z-index: 10;
+      background: #fff;
     }
 
     .logo {
+      color: #080808;
+      text-decoration: none;
       font-size: 48px;
       line-height: 1;
       font-weight: 400;
       letter-spacing: 7px;
-      text-decoration: none;
-      color: #080808;
     }
 
     .header-actions {
@@ -43,23 +46,23 @@
     }
 
     .icon-button {
+      position: relative;
       width: 32px;
       height: 32px;
-      border: 0;
       padding: 0;
+      border: 0;
       background: transparent;
       color: #080808;
       display: grid;
       place-items: center;
       cursor: pointer;
-      position: relative;
     }
 
     .icon-button svg {
       width: 30px;
       height: 30px;
-      stroke: currentColor;
       fill: none;
+      stroke: currentColor;
       stroke-width: 1.8;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -67,21 +70,21 @@
 
     .notification-dot {
       position: absolute;
+      top: -1px;
+      right: 0;
       width: 8px;
       height: 8px;
-      background: #ff1f2d;
       border-radius: 50%;
-      top: 0;
-      right: 1px;
+      background: #ff1f2d;
     }
 
     .hero {
       position: relative;
       width: 100%;
-      height: calc(100vh - 108px);
-      min-height: 650px;
+      height: calc(100svh - 108px);
+      min-height: 620px;
       overflow: hidden;
-      background: #171717;
+      background: #222;
     }
 
     .hero-image {
@@ -89,37 +92,21 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center top;
       display: block;
+      object-fit: cover;
+      object-position: center center;
     }
-
-    /* Replace /assets/hero.jpg with the supplied campaign image later. */
-    .image-placeholder {
-      position: absolute;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background:
-        linear-gradient(115deg, rgba(220,220,220,.16), rgba(20,20,20,.7)),
-        #303030;
-      color: rgba(255,255,255,.45);
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .image-placeholder span { margin-top: 25vh; }
 
     .hero-copy {
       position: absolute;
-      left: 50%;
-      top: 53.8%;
-      transform: translate(-50%, -50%);
       z-index: 2;
+      left: 50%;
+      top: 54%;
+      width: min(72vw, 620px);
+      transform: translate(-50%, -50%);
       text-align: center;
       color: #fff;
-      width: min(72vw, 620px);
+      pointer-events: none;
     }
 
     .hero-title {
@@ -135,10 +122,10 @@
 
     .women-link {
       position: absolute;
+      z-index: 3;
       right: 6.2%;
       top: 54.5%;
       transform: translateY(-50%);
-      z-index: 3;
       color: #fff;
       text-decoration: none;
       font-size: clamp(20px, 3vw, 35px);
@@ -155,20 +142,32 @@
         height: 82px;
         padding: 0 24px;
       }
+
       .logo {
         font-size: 32px;
         letter-spacing: 5px;
       }
+
       .header-actions { gap: 17px; }
       .icon-button { width: 27px; height: 27px; }
       .icon-button svg { width: 27px; height: 27px; }
       .notification-dot { width: 7px; height: 7px; }
-      .hero { height: calc(100svh - 82px); min-height: 540px; }
-      .hero-copy { top: 54%; width: 82vw; }
+
+      .hero {
+        height: calc(100svh - 82px);
+        min-height: 540px;
+      }
+
+      .hero-copy {
+        top: 54%;
+        width: 82vw;
+      }
+
       .hero-title {
         font-size: clamp(58px, 15vw, 100px);
         letter-spacing: -4px;
       }
+
       .women-link {
         top: 55%;
         right: 5%;
@@ -180,7 +179,7 @@
       .site-header { padding: 0 18px; }
       .header-actions { gap: 12px; }
       .hero-title { font-size: 62px; }
-      .women-link { font-size: 15px; right: 4%; }
+      .women-link { right: 4%; font-size: 15px; }
     }
   </style>
 </head>
@@ -220,8 +219,11 @@
   </header>
 
   <main class="hero">
-    <img class="hero-image" src="/assets/hero.jpg" alt="HALE campaign models" onerror="this.style.display='none'; document.querySelector('.image-placeholder').style.display='grid';" />
-    <div class="image-placeholder" aria-hidden="true"><span>Replace with hero.jpg</span></div>
+    <img
+      class="hero-image"
+      src="/file_000000003ddc8211854a6d12d54ef261.png"
+      alt="HALE men's fashion campaign"
+    />
 
     <div class="hero-copy">
       <h1 class="hero-title"><span>SHOP</span><span>MEN</span></h1>
